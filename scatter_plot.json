@@ -1,0 +1,35 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "A scatterplot showing Humidity and Temperature of each state in US.",
+    "data": {
+        "url": "https://media.githubusercontent.com/media/chienming12/fit3179/main/US_Accidents_Dec21_updated_cleaned.csv"
+    },
+    "params": [{
+        "name": "Temperature_Above",
+        "value": 0,
+        "bind": {
+            "input": "range",
+            "min": 0,
+            "max": 200,
+            "step": 20,
+            "name": "Minimum Temperature: "
+        }
+    }],
+    "mark": "point",
+    "transform": [
+        { "filter": "datum.Temperature > Temperature_Above" }
+    ],
+    "encoding": {
+        "x": {
+            "field": "Severity",
+            "type": "quantitative",
+            "scale": { "zero": false }
+        },
+        "y": {
+            "field": "Temperature",
+            "type": "quantitative",
+            "scale": { "zero": false }
+        },
+        "color": { "field": "Severity", "type": "nominal" }
+    }
+}
