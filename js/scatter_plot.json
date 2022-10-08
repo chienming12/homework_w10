@@ -1,6 +1,9 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "description": "A scatterplot showing Humidity and Temperature of each state in US.",
+    "description": "A scatterplot showing Severity and Temperature of each state in US.",
+    "width": 700,
+    "height": 400,
+    "title": "Severity of Accident against the Temperature of each state in United States",
     "data": {
         "url": "https://media.githubusercontent.com/media/chienming12/fit3179/main/US_Accidents_Dec21_updated_cleaned.csv"
     },
