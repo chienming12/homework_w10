@@ -4,25 +4,25 @@
     "width": 800,
     "height": 400,
     "data": {
-        "url": "https://cdn.jsdelivr.net/npm/us-atlas@3/counties-10m.json",
-        "format": { "type": "topojson", "feature": "states" }
+        "url": "https://raw.githubusercontent.com/chienming12/fit3179/main/s_22mr22.json",
+        "format": { "type": "topojson", "feature": "s_22mr22" }
     },
     "layer": [{
             "transform": [
-                { "calculate": "'Data is not available in ' + datum.properties.name", "as": "note" }
+                { "calculate": "'Data is not available in ' + datum.properties.STATE", "as": "note" }
             ],
             "mark": { "type": "geoshape", "fill": "lightgray", "stroke": "white" },
             "encoding": { "tooltip": { "field": "note" } }
         },
         {
             "transform": [{
-                "lookup": "id",
+                "lookup": "properties.STATE",
                 "from": {
                     "data": {
                         "url": "https://media.githubusercontent.com/media/chienming12/fit3179/main/US_Accidents_Dec21_updated_cleaned.csv"
                     },
-                    "key": "ID",
-                    "fields": ["Temperature", "State"]
+                    "key": "State",
+                    "fields": ["Temperature"]
                 }
             }],
             "projection": { "type": "albersUsa" },
