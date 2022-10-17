@@ -12,7 +12,7 @@ body {
 
 .floating-text {
     position: absolute;
-    bottom: 275px;
+    bottom: -30px;
     right: 480px;
     background-color: black;
     color: white;
