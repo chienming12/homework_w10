@@ -5,7 +5,7 @@
     "height": 400,
     "title": "Severity of Accident against the Temperature of each state in United States",
     "data": {
-        "url": "https://media.githubusercontent.com/media/chienming12/fit3179/main/US_Accidents_Dec21_updated_cleaned.csv"
+        "url": "https://media.githubusercontent.com/media/chienming12/fit3179/main/US_Accidents_Dec21_modified.csv"
     },
     "params": [{
         "name": "Temperature_Above",

@@ -1,0 +1,77 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": "Humidity of US States",
+    "config": {
+        "title": {
+            "color": "black",
+            "fontSize": 20
+        },
+        "style": {
+            "cell": {
+                "stroke": "transparent"
+            }
+        }
+    },
+    "width": 800,
+    "height": 400,
+    "data": {
+        "url": "https://raw.githubusercontent.com/chienming12/fit3179/main/js/s_22mr22.json",
+        "format": { "type": "topojson", "feature": "s_22mr22" }
+    },
+    "layer": [{
+            "transform": [
+                { "calculate": "'Data is not available in ' + datum.properties.STATE", "as": "note" }
+            ],
+            "mark": { "type": "geoshape", "fill": "lightgray", "stroke": "white" },
+            "encoding": { "tooltip": { "field": "note" } }
+        },
+        {
+            "transform": [{
+                "lookup": "properties.STATE",
+                "from": {
+                    "data": {
+                        "url": "https://media.githubusercontent.com/media/chienming12/fit3179/main/csv/US_Accidents_Dec21_humidityByState.csv"
+                    },
+                    "key": "State",
+                    "fields": ["Humidity", "State"]
+                }
+            }],
+            "projection": { "type": "albersUsa" },
+            "mark": "geoshape",
+            "encoding": {
+                "color": {
+                    "field": "Humidity",
+                    "type": "quantitative",
+                    "scale": { "type": "log" }
+                },
+                "tooltip": [
+                    { "field": "State", "type": "nominal", "title": "State" },
+                    {
+                        "field": "Humidity",
+                        "type": "quantitative",
+                        "title": "Humidity(%)"
+                    }
+                ]
+            }
+        },
+        {
+            "transform": [
+                { "filter": "datum.State == 'TX'" },
+                {
+                    "calculate": "'Texas and Florida are the bigger states that are included; in the top 3 states, as it is shown, when the humidity is higher,; it tends to cause more slipper roads, thus more accidents occur.'",
+                    "as": "text_annotation_raw"
+                },
+                {
+                    "calculate": "split(datum.text_annotation_raw,';')",
+                    "as": "text_annotation"
+                }
+            ],
+            "mark": { "type": "text", "dx": -200, "dy": -200 },
+            "encoding": {
+                "text": { "field": "text_annotation" },
+                "color": { "value": "#000000" },
+                "size": { "value": 10 }
+            }
+        }
+    ]
+}
